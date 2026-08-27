@@ -14,3 +14,5 @@ docs/
 .env
 
 .idea/
+# Bun dependencies for the lint script
+node_modules/
