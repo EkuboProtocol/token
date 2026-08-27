@@ -1,0 +1,20 @@
+name: lint
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  complexity:
+    name: Cyclomatic complexity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check cyclomatic complexity
+        run: >
+          npx -y solhint@6.2.4 --disc --noPoster -c .solhint.json --max-warnings 0
+          'src/**/*.sol' 'script/**/*.sol' 'test/**/*.sol'
