@@ -14,7 +14,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: oven-sh/setup-bun@v2
+
+      - name: Install lint dependencies
+        run: bun install --frozen-lockfile
+
       - name: Check cyclomatic complexity
-        run: >
-          npx -y solhint@6.2.4 --disc --noPoster -c .solhint.json --max-warnings 0
-          'src/**/*.sol' 'script/**/*.sol' 'test/**/*.sol'
+        run: bun run lint
